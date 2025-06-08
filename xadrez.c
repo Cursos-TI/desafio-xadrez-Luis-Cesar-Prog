@@ -8,7 +8,7 @@ int main() {
         printf("Direita\n");
     }
 
-    // Movimento do Bispo: 5 casas na diagonal para cima e direita
+    // Movimento do Bispo: 5 casas na diagonal (Cima e Direita)
     int j = 0;
     printf("\nMovimento do Bispo:\n");
     while(j < 5) {
@@ -23,6 +23,20 @@ int main() {
         printf("Esquerda\n");
         k++;
     } while(k < 8);
+
+    // Movimento do Cavalo: 2 casas para cima e 1 para a direita
+    printf("\nMovimento do Cavalo:\n");
+    int l;
+    for(l = 0; l < 2; l++) {
+        printf("Cima\n");
+        if(l == 1) {
+            int m = 0;
+            while(m < 1) {
+                printf("Direita\n");
+                m++;
+            }
+        }
+    }
 
     return 0;
 }
