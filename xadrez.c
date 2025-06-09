@@ -1,39 +1,71 @@
 #include <stdio.h>
 
-int main() {
-    // Movimento da Torre: 5 casas para a direita
-    int i;
-    printf("Movimento da Torre:\n");
-    for(i = 0; i < 5; i++) {
+// Função recursiva para a Torre
+void movimentoTorre(int casas) {
+    if (casas == 0) {
+        return;
+    }
+    printf("Direita\n");
+    movimentoTorre(casas - 1);
+}
+
+// Função recursiva para a Rainha
+void movimentoRainha(int casas) {
+    if (casas == 0) {
+        return;
+    }
+    printf("Esquerda\n");
+    movimentoRainha(casas - 1);
+}
+
+// Função recursiva para o Bispo (com loops dentro)
+void movimentoBispo(int casas, int passo) {
+    if (casas == 0) {
+        return;
+    }
+
+    // Primeiro vai para cima
+    for (int i = 0; i < passo; i++) {
+        printf("Cima\n");
+    }
+    // Depois vai para a direita
+    for (int j = 0; j < passo; j++) {
         printf("Direita\n");
     }
 
-    // Movimento do Bispo: 5 casas na diagonal (Cima e Direita)
-    int j = 0;
+    // Chama de novo para continuar
+    movimentoBispo(casas - 1, passo);
+}
+
+int main() {
+    int casasTorre = 5;
+    int casasBispo = 5;
+    int casasRainha = 8;
+
+    printf("Movimento da Torre:\n");
+    movimentoTorre(casasTorre);
+
     printf("\nMovimento do Bispo:\n");
-    while(j < 5) {
-        printf("Cima, Direita\n");
-        j++;
-    }
+    movimentoBispo(casasBispo, 1);
 
-    // Movimento da Rainha: 8 casas para a esquerda
-    int k = 0;
     printf("\nMovimento da Rainha:\n");
-    do {
-        printf("Esquerda\n");
-        k++;
-    } while(k < 8);
+    movimentoRainha(casasRainha);
 
-    // Movimento do Cavalo: 2 casas para cima e 1 para a direita
+    // Movimento do Cavalo: em L (2 para cima e 1 para direita)
     printf("\nMovimento do Cavalo:\n");
-    int l;
-    for(l = 0; l < 2; l++) {
+    int cimaMax = 2;
+    int direitaMax = 1;
+
+    for (int i = 1; i <= cimaMax; i++) {
         printf("Cima\n");
-        if(l == 1) {
-            int m = 0;
-            while(m < 1) {
+
+        // Quando chegar em cimaMax, vai para direita
+        if (i == cimaMax) {
+            for (int j = 1; j <= direitaMax; j++) {
+                if (j > 1) {
+                    break; // só para mostrar que tem break
+                }
                 printf("Direita\n");
-                m++;
             }
         }
     }
